@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    annotate-models (1.0.4)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
@@ -40,6 +41,7 @@ GEM
     factory_girl_rails (1.0)
       factory_girl (~> 1.3)
       rails (>= 3.0.0.beta4)
+    flutie (1.0.4)
     haml (3.0.18)
     haml-rails (0.2)
       haml (~> 3.0)
@@ -89,6 +91,7 @@ GEM
     rspec-mocks (2.0.0.beta.20)
     rspec-rails (2.0.0.beta.20)
       rspec (= 2.0.0.beta.20)
+    simple_importer (0.1.0)
     thor (0.14.0)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -98,8 +101,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate-models
   compass
   factory_girl_rails
+  flutie
   haml
   haml-rails
   jquery-rails
@@ -108,3 +113,4 @@ DEPENDENCIES
   rails3-generators
   remarkable_activemodel (>= 4.0.0.alpha4)
   rspec-rails (>= 2.0.0.beta.19)
+  simple_importer

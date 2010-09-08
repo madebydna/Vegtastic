@@ -36,3 +36,7 @@ gem "rspec-rails", ">= 2.0.0.beta.19", :group => [:development, :test]
 gem "factory_girl_rails", :group => :test
 gem "remarkable_activemodel", ">=4.0.0.alpha4", :group => :test
 gem "compass"
+gem "annotate-models", :group => :development
+gem "flutie"
+gem "simple_importer", :group => :development
+
