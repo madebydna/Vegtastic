@@ -33,7 +33,7 @@ namespace :import do
     CSV.foreach("lib/import_data/NUTR_DEF.csv", :col_sep => "|", :headers => true) do |row|
       nutrient = Nutrient.find_by_old_pk(row['Nutr_No'])
       if nutrient
-        NutrientDefinition.create(:nutrient_id => nutrient.id, :units => row['Units'], :description => row['NutrDesc'])
+        NutrientDefinition.create(:nutrient_id => nutrient.id, :units => row['Units'], :tag => row['Tagname'], :description => row['NutrDesc'])
       end
     end
   end
