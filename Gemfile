@@ -37,6 +37,6 @@ gem "factory_girl_rails", :group => :test
 gem "remarkable_activemodel", ">=4.0.0.alpha4", :group => :test
 gem "compass"
 gem "annotate-models", :group => :development
-gem "flutie"
+gem "flutie", :group => :development
 gem "simple_importer", :group => :development
 

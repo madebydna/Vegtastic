@@ -10,3 +10,4 @@ public/cache/
 public/stylesheets/compiled/
 public/system/*
 tmp/restart.txt
+*.kpf
