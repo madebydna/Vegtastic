@@ -8,7 +8,7 @@ See working example at [calorie count](http://caloriecount.about.com/cc/recipe_a
 
 As the source of nutritional data I am using a freely available DB from the UDSA (US Dept. of Agriculture). The original data source was in MS Access. 
 
-*What I did so far*:
+This needed to be done for the data import:
 
 - understand the tables and their relationships in the original data source
 - identify the portion of the data that is relevant for this project (e.g. not all tables and fields were imported and I left out all non-vegetarian foods)
@@ -39,17 +39,19 @@ Ingredients should get flagged after creation/update depending on whether they h
 
 **Green flag**: ingredient found and nutritionally analyzed
 
-If ingredient gets green flag, entries will be made into the ingredient_profiles table with the nutrient_id (e.g. Kcal, Protein, Carbs) 
-and the amount of that nutrient for the measurement of the ingredient. After all ingredients have been processed this way, an entry will be made
-into the recipe_profiles table with the aggregated values for each nutrient over all ingredients. This would conclude the nutritional analysis of the recipe.
+If ingredient gets green flag, entries will be made into the ingredient_profiles table with the amount of nutrient (e.g. Kcal, Protein, Carbs) 
+for the particular ingredient. After all ingredients have been processed this way, an entry will be made
+into the recipe_profiles table with aggregated values for each nutrient over all ingredients. This would conclude the nutritional analysis of the recipe.
 
 ### Issues and Problems
 
 - "Lookup" tables should be used in testing, too. Have to figure out how to set up testing environment to make that possible
 - Callbacks on the recipe model trigger the entries into the cache tables. Since I'll be using nested forms, the ingredients 
   will not be saved or updated independently of the recipe. However, not to trigger those events when a ingredient does get saved independently
-  seems like a design flaw and needs to be address. 
-- Implement parsing/searching logic to map ingredient name (user input) to matches in the foods table. The same goes for mapping ingredient units to entries into the weights table.
+  seems like a design flaw and needs to be addressed. 
+- Implement parsing/searching logic to map ingredient name (user input) to matches in the foods table. The same goes for mapping ingredient 
+  units (tsp, cup) to entries into the weights table. The problem is that there will hardly ever be a perfect match, so several steps need 
+  to find an adequate match.
 
 
 
