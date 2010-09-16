@@ -37,7 +37,7 @@ Ingredients should get flagged after creation/update depending on whether they h
 
 **Yellow flag**: ingredient found, but not with the measurement indicated (e.g. 1 "clove" of flour)
 
-**Green flag**: ingredient found and nutritionally analyzed
+**Green flag**: ingredient found and measurement found. Ready for nutritional analysis.
 
 If ingredient gets green flag, entries will be made into the ingredient_profiles table with the amount of nutrient (e.g. Kcal, Protein, Carbs) 
 for the particular ingredient. After all ingredients have been processed this way, an entry will be made
