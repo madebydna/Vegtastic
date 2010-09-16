@@ -2,41 +2,44 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+group :development do
+    gem "annotate-models"
+    gem "flutie"
+    gem "simple_importer"
+end
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+group :test do
+    #gem 'heroku'
+    gem "rspec-rails", ">= 2.0.0.beta.20"
+    gem "factory_girl_rails"
+    gem "remarkable_activemodel", ">=4.0.0.alpha4"
+    gem 'rspec', '2.0.0.beta.20'
+    gem "ZenTest"
+    gem "autotest"
+    gem "autotest-rails"
+    gem 'spork', '0.8.4'    
+end
+
+
 gem "rails3-generators"
 gem "haml-rails"
 gem "jquery-rails"
 gem "haml"
-gem "rspec-rails", ">= 2.0.0.beta.19", :group => [:development, :test]
-gem "factory_girl_rails", :group => :test
-gem "remarkable_activemodel", ">=4.0.0.alpha4", :group => :test
+#gem "rspec-rails", ">= 2.0.0.beta.19", :group => [:development, :test]
+#gem "factory_girl_rails", :group => :test
+#gem "remarkable_activemodel", ">=4.0.0.alpha4", :group => :test
 gem "compass"
-gem "annotate-models", :group => :development
-gem "flutie", :group => :development
-gem "simple_importer", :group => :development
+#compass watch seems to need rb-inotify for watch function
+#maybe can be moved to development group?
+#also add this to rails 3 template
+gem "rb-inotify"
+#gem "annotate-models", :group => :development
+#gem "flutie", :group => :development
+#gem "simple_importer", :group => :development
 
