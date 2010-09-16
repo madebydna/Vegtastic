@@ -1,9 +1,13 @@
-%p
-  %b Title:
+%h3
   = @recipe.title
 %p
   %b Servings:
   = @recipe.servings
+%h5 Ingredients  
+-@recipe.ingredients.each do |i|
+  %p
+    ="#{i.amount} #{i.unit} #{i.name}, #{i.instructions}"
+
 %p
   %b Description:
   = @recipe.description

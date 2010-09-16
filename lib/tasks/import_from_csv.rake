@@ -31,10 +31,7 @@ namespace :import do
   desc "Importing Nutrient Definitions"
   task :nutrient_definitions => :environment do
     CSV.foreach("lib/import_data/NUTR_DEF.csv", :col_sep => "|", :headers => true) do |row|
-      nutrient = Nutrient.find_by_old_pk(row['Nutr_No'])
-      if nutrient
-        NutrientDefinition.create(:nutrient_id => nutrient.id, :units => row['Units'], :tag => row['Tagname'], :description => row['NutrDesc'])
-      end
+      NutrientDefinition.create(:old_pk => row['Nutr_No'], :units => row['Units'], :tag => row['Tagname'], :description => row['NutrDesc'])
     end
   end
   
@@ -45,6 +42,14 @@ namespace :import do
       if food
         Weight.create(:food_id => food.id, :amount => row['Amount'], :measure_desc => row['Msre_Desc'], :gm_weight => row['Gm_Wgt'])
       end
+    end
+  end
+  
+  # Relationship between tables was backwards in original data source
+  desc "Fixing nutrient data"
+  task :fixing_nutrient_data => :environment do
+    NutrientDefinition.all.each do |nd|
+      Nutrient.update_all("nutrient_definition_id = #{nd.id}", "old_pk = '#{nd.old_pk}'")
     end
   end
   

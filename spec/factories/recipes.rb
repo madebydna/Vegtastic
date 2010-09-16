@@ -1,8 +1,8 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
 Factory.define :recipe do |f|
-  f.title "MyString"
-  f.servings 1
-  f.description "MyText"
-  f.directions "MyText"
+  f.title "Carrot Cake"
+  f.servings 10
+  f.description "Yummy, healthy and delicious"
+  f.directions "Mix all ingredients and bake at 400F"
 end

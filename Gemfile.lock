@@ -1,3 +1,8 @@
+PATH
+  remote: /Users/devo/rails3_sites/database_cleaner
+  specs:
+    database_cleaner (0.6.0.rc.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -103,6 +108,7 @@ PLATFORMS
 DEPENDENCIES
   annotate-models
   compass
+  database_cleaner!
   factory_girl_rails
   flutie
   haml
