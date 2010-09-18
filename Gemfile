@@ -39,5 +39,5 @@ gem "compass"
 gem "annotate-models", :group => :development
 gem "flutie"
 gem "simple_importer", :group => :development
-gem "database_cleaner", :path => "~/rails3_sites/database_cleaner", :group => :test
+gem "database_cleaner", :git => "git://github.com/madebydna/database_cleaner.git", :group => :test
 

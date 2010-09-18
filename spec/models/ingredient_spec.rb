@@ -7,10 +7,10 @@ describe Ingredient do
       # ensures that we are using foods and measurements that actually exist
       @food = Factory(:food)
       @weight = Factory(:weight, :food_id => @food.id)
-      @n1 = @food.nutrients.create({:value => 171})
-      @n1.create_nutrient_definition(Factory.attributes_for(:nutrient_definition))
-      @n2 = @food.nutrients.create({:value => 2})
-      @n2.create_nutrient_definition({:tag => "FAT", :description => "Total Fat", :units => "g"})
+      @nd1 = Factory.create(:nutrient_definition)
+      @n1 = @food.nutrients.create({:value => 171, :nutrient_definition_id => @nd1.id})
+      @nd2 = NutrientDefinition.create({:tag => "FAT", :description => "Total Fat", :units => "g"})
+      @n2 = @food.nutrients.create({:value => 2, :nutrient_definition_id => @nd2.id})
       # ------------------------------------------------------------------------------------------
       @recipe = Factory.build(:recipe)
       @recipe.ingredients.build({:name => @food.long_desc, :amount => @weight.amount, :unit => @weight.measure_desc})

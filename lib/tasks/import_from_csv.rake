@@ -3,8 +3,8 @@ require 'csv'
 
 task :import_usda_data => :environment do 
   Rake::Task["import:foods"].invoke 
-  Rake::Task["import:nutrients"].invoke
   Rake::Task["import:nutrient_definitions"].invoke
+  Rake::Task["import:nutrients"].invoke
   Rake::Task["import:weights"].invoke              
 end
 
@@ -18,16 +18,6 @@ namespace :import do
     end
   end
   
-  desc "Importing Nutrients"
-  task :nutrients => :environment do
-    CSV.foreach("lib/import_data/NUT_DATA_MIN.csv", :col_sep => "|", :headers => true) do |row|
-      food = Food.find_by_old_pk(row['NDB_No'])
-      if food
-        Nutrient.create(:food_id => food.id, :old_pk => row['Nutr_No'], :value => row['Nutr_Val'])
-      end
-    end
-  end
-  
   desc "Importing Nutrient Definitions"
   task :nutrient_definitions => :environment do
     CSV.foreach("lib/import_data/NUTR_DEF.csv", :col_sep => "|", :headers => true) do |row|
@@ -35,6 +25,17 @@ namespace :import do
     end
   end
   
+  desc "Importing Nutrients"
+  task :nutrients => :environment do
+    CSV.foreach("lib/import_data/NUT_DATA_MIN.csv", :col_sep => "|", :headers => true) do |row|
+      food = Food.find_by_old_pk(row['NDB_No'])
+      if food
+        nd = NutrientDefinition.find_by_old_pk(row['Nutr_No'])
+        Nutrient.create(:food_id => food.id, :nutrient_definition_id => nd.id, :old_pk => row['Nutr_No'], :value => row['Nutr_Val'])
+      end
+    end
+  end
+   
   desc "Importing Weights"
   task :weights => :environment do
     CSV.foreach("lib/import_data/WEIGHT.csv", :col_sep => "|", :headers => true) do |row|

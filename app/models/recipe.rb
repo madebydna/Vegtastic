@@ -13,6 +13,11 @@
 #
 
 class Recipe < ActiveRecord::Base
+    
+  before_save :set_ingredient_flags
+  # NB: order in which the methods are listed is important. 
+  # the methods seem to get executed in reverse order, contrary to what you would expect
+  after_save :update_or_create_recipe_profile, :trigger_ingredient_profiles
   
   has_many :ingredients, :dependent => :destroy
   validates_associated :ingredients
@@ -22,8 +27,6 @@ class Recipe < ActiveRecord::Base
   
   validate :needs_at_least_one_ingredient
   
-  before_save :set_ingredient_flags
-  after_save :trigger_ingredient_profiles, :create_or_update_recipe_profile
   
   def needs_at_least_one_ingredient
     errors.add(:base, "must have at least one ingredient") if ingredients.size == 0
@@ -44,7 +47,7 @@ class Recipe < ActiveRecord::Base
     end  
   end
   
-  def create_or_update_recipe_profile
+  def update_or_create_recipe_profile
     i_profiles = IngredientProfile.aggregated_nutrient_values_by_recipe(ingredients.collect(&:id))
     # create or update nutrient entry
     i_profiles.each do |ip|

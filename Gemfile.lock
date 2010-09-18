@@ -1,5 +1,6 @@
-PATH
-  remote: /Users/devo/rails3_sites/database_cleaner
+GIT
+  remote: git://github.com/madebydna/database_cleaner.git
+  revision: 04ba63b
   specs:
     database_cleaner (0.6.0.rc.2)
 
