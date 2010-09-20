@@ -14,14 +14,11 @@
 
 class Recipe < ActiveRecord::Base
     
-  before_save :set_ingredient_flags
-  # NB: order in which the methods are listed is important. 
-  # the methods seem to get executed in reverse order, contrary to what you would expect
-  after_save :update_or_create_recipe_profile, :trigger_ingredient_profiles
+  after_save :update_or_create_recipe_profile
   
   has_many :ingredients, :dependent => :destroy
   validates_associated :ingredients
-  has_many :recipe_profiles
+  has_many :recipe_profiles, :dependent => :destroy
   
   accepts_nested_attributes_for :ingredients, :allow_destroy => true 
   
@@ -34,18 +31,6 @@ class Recipe < ActiveRecord::Base
   
   
   private
-  
-  def set_ingredient_flags
-    ingredients.each do |i|
-      i.set_flag
-    end
-  end
-  
-  def trigger_ingredient_profiles
-    ingredients.each do |i|
-      i.create_profiles if i.flag == "green"
-    end  
-  end
   
   def update_or_create_recipe_profile
     i_profiles = IngredientProfile.aggregated_nutrient_values_by_recipe(ingredients.collect(&:id))

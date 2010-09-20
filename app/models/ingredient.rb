@@ -26,7 +26,8 @@ class Ingredient < ActiveRecord::Base
   validates_numericality_of :amount
   validates_presence_of :amount, :name
   
-  
+  before_save :set_flag
+  after_save :create_profiles
   
   def set_flag
     if changed_significantly?
