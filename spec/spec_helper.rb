@@ -5,7 +5,7 @@ Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However, 
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
-    ENV["RAILS_ENV"] ||= 'test'
+  ENV["RAILS_ENV"] ||= 'test'
   unless defined?(Rails)
     require File.dirname(__FILE__) + "/../config/environment"
   end
@@ -35,10 +35,9 @@ Spork.prefork do
     ### Part of a Spork hack. See http://bit.ly/arY19y
     # Emulate initializer set_clear_dependencies_hook in 
     # railties/lib/rails/application/bootstrap.rb
-    ActiveSupport::Dependencies.clear  
+    ActiveSupport::Dependencies.clear
   end
 end
-Spork.each_run do
-  # This code will be run each time you run your specs. 
-end
 
+Spork.each_run do
+end

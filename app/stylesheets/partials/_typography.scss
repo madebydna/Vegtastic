@@ -1,0 +1,96 @@
+/*gems/compass-0.10.5/frameworks/blueprint/stylesheets/blueprint/_typography.scss*/
+body.bp {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 75%;
+	color: #333;
+  }
+  
+body.bp h1 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.50em;
+}
+
+body.bp h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+
+body.bp h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1.00em;
+}
+
+body.bp h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+
+body.bp h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.50em;
+}
+
+body.bp h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+body.bp p {
+  margin: 0 0 1.5em;
+}
+
+body.bp p img.left {
+  display: inline;
+  float: left;
+  margin: 1.5em 1.5em 1.5em 0;
+  padding: 0;
+}
+
+body.bp p img.right {
+  display: inline;
+  float: right;
+  margin: 1.5em 0 1.5em 1.5em;
+  padding: 0;
+  }
+  
+body.bp blockquote {
+  margin: 1.5em;
+  color: #666666;
+  font-style: italic;
+}
+
+body.bp strong {
+  font-weight: bold;
+}
+
+body.bp em {
+  font-style: italic;
+}
+
+body.bp sup, body.bp sub {
+  line-height: 0;
+}
+body.bp dl {
+  margin: 0 0 1.5em 0;
+}
+
+body.bp dl dt {
+  font-weight: bold;
+}
+
+body.bp dd {
+  margin-left: 1.5em;
+}
+
+
+body.bp .quiet {
+  color: #666666;
+}
+
+body.bp .loud {
+  color: #111111;
+  }

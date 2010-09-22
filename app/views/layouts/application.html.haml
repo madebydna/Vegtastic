@@ -1,11 +1,84 @@
 !!! 5
 %html
-%head
-  = csrf_meta_tag
-  = javascript_include_tag :defaults
-  = stylesheet_link_tag :flutie, :cache => true
-  /[if lt IE 9]
-    = javascript_include_tag 'html5'
-%body
-  = yield
-  
+  %head
+    %title 
+      ="Vegtastic | #{title}"
+    = csrf_meta_tag
+    =# stylesheet_link_tag :flutie, :cache => true
+    = stylesheet_link_tag 'compiled/screen', :media => 'screen'
+    = stylesheet_link_tag 'compiled/print',  :media => 'print' 
+    /[if lt IE 8]
+      = stylesheet_link_tag 'compiled/ie'
+    /[if lt IE 9]
+      = javascript_include_tag 'html5'
+
+  %body{:class => "bp", :id => @body_id}
+    #mainWrapper
+      #universalNav
+        %h2.hide
+          Universal Navigation
+        %ul
+          %li
+            =link_to "About Vegtastic", "#"
+          %li
+            =link_to "Contact Us", "#"
+          %li
+            =link_to "Store", "#"
+          %li
+            =link_to "Press", "#"
+      .mainCap.top
+      #mastheadWrapper
+        #mastheadContainer.group
+          #logo
+            %h2.hide Vegtastic Recipes. Eat well. Live well. Do good.
+            %span
+              =link_to (image_tag "./temp/V-logo1.jpg"), "#", :title => "vegtastic home"
+          #identityNav
+            %ul
+              %li
+                =link_to "Sign in", "#"
+              %li
+                =link_to "Renew Membership", "#"
+              %li.last
+                =link_to "Join VR", "#"
+          #memberNav
+            %ul
+              %li
+                =link_to "For Members", "#"
+              %li
+                =link_to "For Vegans", "#"
+              %li
+                =link_to "For Raw Foodists", "#"
+              %li.last
+                =link_to "How To's", "#"
+          #searchNav
+            %form_tag
+              %span
+                =text_field_tag :email, "Search Recipes", :class => "searchText"
+                =link_to "Go", "#", :class => "button"
+                
+      #navigationWrapper
+        #navigationContainer.group
+          %h2.hide "Primary Navigation Menu"
+          %ul
+            %li  
+              =link_to "Recipes", "#"
+            %li
+              =link_to "Articles", "#"
+            %li
+              =link_to "Forums", "#"
+            %li
+              =link_to "Recipes", "#"
+            %li
+              =link_to "Articles", "#"
+            %li
+              =link_to "Forums", "#"
+            %li.last
+              =link_to "Help", "#"
+      #contentWrapper
+        #contentContainer
+          =yield
+      .mainCap.bottom
+      .footer
+        footer goes here
+    = javascript_include_tag :defaults

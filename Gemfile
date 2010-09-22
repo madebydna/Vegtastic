@@ -11,15 +11,13 @@ group :development do
 end
 
 # group :development, :test do
-#   gem 'webrat'
+    gem "rspec-rails", "2.0.0.beta.18"
 # end
 
 group :test do
-    #gem 'heroku'
-    gem "rspec-rails", ">= 2.0.0.beta.20"
+    gem 'rspec', '2.0.0.beta.18'
     gem "factory_girl_rails"
     gem "remarkable_activemodel", ">=4.0.0.alpha4"
-    gem 'rspec', '2.0.0.beta.20'
     gem "ZenTest"
     gem "autotest"
     gem "autotest-rails"
