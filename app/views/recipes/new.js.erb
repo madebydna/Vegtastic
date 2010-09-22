@@ -1,0 +1,4 @@
+var new_id = new Date().getTime();
+var regexp = new RegExp("new_ingredients", "g");
+var to_append = jQuery('#extra').html();
+$('#add-another').before(to_append.replace(regexp, new_id));

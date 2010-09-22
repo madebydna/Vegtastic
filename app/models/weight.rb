@@ -15,4 +15,10 @@
 class Weight < ActiveRecord::Base
   
   belongs_to :food
+  
+  define_index do
+    indexes measure_desc, :as => :unit
+    has food_id
+  end
+  
 end

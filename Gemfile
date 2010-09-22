@@ -40,4 +40,7 @@ gem "annotate-models", :group => :development
 gem "flutie"
 gem "simple_importer", :group => :development
 gem "database_cleaner", :git => "git://github.com/madebydna/database_cleaner.git", :group => :test
+gem 'thinking-sphinx', :git => 'git://github.com/freelancing-god/thinking-sphinx.git', :branch  => 'rails3', 
+                       :require => 'thinking_sphinx'
+
 

@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/freelancing-god/thinking-sphinx.git
+  revision: 644f57e
+  branch: rails3
+  specs:
+    thinking-sphinx (2.0.0.rc2)
+      activerecord (>= 3.0.0.rc)
+      riddle (>= 1.0.12)
+
+GIT
   remote: git://github.com/madebydna/database_cleaner.git
   revision: 04ba63b
   specs:
@@ -87,6 +96,7 @@ GEM
     remarkable_activemodel (4.0.0.alpha4)
       remarkable (~> 4.0.0.alpha4)
       rspec (>= 2.0.0.alpha11)
+    riddle (1.1.0)
     rspec (2.0.0.beta.20)
       rspec-core (= 2.0.0.beta.20)
       rspec-expectations (= 2.0.0.beta.20)
@@ -121,3 +131,4 @@ DEPENDENCIES
   remarkable_activemodel (>= 4.0.0.alpha4)
   rspec-rails (>= 2.0.0.beta.19)
   simple_importer
+  thinking-sphinx!

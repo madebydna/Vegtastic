@@ -1,12 +1,15 @@
-%ol
-  = f.label :amount
-  = f.text_field :amount
-%ol
-  = f.label :unit
-  = f.text_field :unit
-%ol
-  = f.label :name
-  = f.text_field :name
-%ol
-  = f.label :instructions
-  = f.text_field :instructions
+.fields
+  %ol
+    = f.label :amount
+    = f.text_field :amount
+  %ol
+    = f.label :unit
+    = f.select :unit, Ingredient::UNITS, :include_blank => true
+  %ol
+    = f.label :name
+    = f.text_field :name
+  %ol
+    = f.label :instructions
+    = f.text_field :instructions
+  %ol
+    =link_to_remove_fields "remove", f

@@ -16,11 +16,14 @@
     %ol
       = f.label :description
       = f.text_area :description, :height => '100'
-    - 3.times { |i| @recipe.ingredients.build } if @recipe.new_record?  
+    -@recipe.ingredients.build if @recipe.new_record?
+    %div{:style => "display:none;", :id => "extra"}
+      =link_to_add_fields(f, :ingredients) 
     %h5 Ingredients
-    = f.fields_for :ingredients do |i_fields|
-      = render :partial => "ingredients/form", :locals => {:f => i_fields}
-      %hr
+    =f.fields_for :ingredients do |i_fields|
+      =render :partial => "ingredients/form", :locals => {:f => i_fields}
+    =link_to("Add Ingredient", new_recipe_path, :id => "add-another", :remote => true)
+    %hr
     %ol
       = f.label :directions
       = f.text_area :directions

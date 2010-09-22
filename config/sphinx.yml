@@ -1,0 +1,13 @@
+development:
+  morphology: stem_en
+  enable_star: true
+  
+  
+production:
+  morphology: stem_en
+  enable_star: true
+    
+    
+test:
+  morphology: stem_en
+  enable_star: true

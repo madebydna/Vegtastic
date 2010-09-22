@@ -16,6 +16,8 @@
 
 class Ingredient < ActiveRecord::Base
   
+  UNITS = ["tbsp", "tsp", "cup", "oz", "lb", "gm", "can", "piece", "clove", "package", "stick", "stalk", "head"]
+  
   # Temp vars to avoid looking up the food/weight twice
   attr_accessor :food, :weight
   
@@ -27,7 +29,16 @@ class Ingredient < ActiveRecord::Base
   validates_presence_of :amount, :name
   
   before_save :set_flag
-  after_save :create_profiles
+  after_save :create_profiles, :if => Proc.new { |i| i.flag == 'green' } 
+  
+  #ingredients not included in the recipe
+  class << self
+    def not_included
+      where("flag != 'green'")
+    end
+  end
+  
+  private
   
   def set_flag
     if changed_significantly?
@@ -53,8 +64,6 @@ class Ingredient < ActiveRecord::Base
       end
     end
   end
-  
-  private
   
   def calculate_nutrient_amount(nutrient)
     ingredient_weight = (weight.gm_weight/weight.amount)*amount
