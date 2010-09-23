@@ -10,6 +10,7 @@ group :development do
     #maybe can be moved to development group?
     #also add this to rails 3 template
     gem "rb-inotify"
+    gem "webbynode"
 end
 
 
