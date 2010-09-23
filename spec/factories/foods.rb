@@ -6,3 +6,11 @@ Factory.define :food do |f|
   f.common_name ""
   f.manufacturer_name ""
 end
+
+
+Factory.define :other_food, :class => Food do |f|
+  f.long_desc "Bread, multi-grain"
+  f.short_desc ""
+  f.common_name ""
+  f.manufacturer_name ""
+end

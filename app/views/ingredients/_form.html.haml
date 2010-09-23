@@ -17,4 +17,8 @@
     = f.text_field :instructions, :id=> "instructions"
   .float-left
     %p.remove
-      =link_to_remove_fields "remove", f
+      -if f.object.new_record?
+        =link_to("remove", "javascript:void(0)", :class => "remove_nested_fields")
+      -else
+        =link_to_remove_fields("remove", f)
+
