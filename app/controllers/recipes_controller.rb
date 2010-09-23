@@ -1,6 +1,4 @@
 class RecipesController < ApplicationController
-  # GET /recipes
-  # GET /recipes.xml
   def index
     @recipes = Recipe.all
 
@@ -10,8 +8,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # GET /recipes/1
-  # GET /recipes/1.xml
   def show
     @recipe = Recipe.find(params[:id], :include => :ingredients)
     respond_to do |format|
@@ -20,8 +16,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # GET /recipes/new
-  # GET /recipes/new.xml
   def new
     @recipe = Recipe.new
 
@@ -31,13 +25,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
   end
 
-  # POST /recipes
-  # POST /recipes.xml
   def create
     @recipe = Recipe.new(params[:recipe])
 
@@ -52,11 +43,8 @@ class RecipesController < ApplicationController
     end
   end
 
-  # PUT /recipes/1
-  # PUT /recipes/1.xml
   def update
     @recipe = Recipe.find(params[:id])
-
     respond_to do |format|
       if @recipe.update_attributes(params[:recipe])
         format.html { redirect_to(@recipe, :notice => 'Recipe was successfully updated.') }
@@ -68,8 +56,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # DELETE /recipes/1
-  # DELETE /recipes/1.xml
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy

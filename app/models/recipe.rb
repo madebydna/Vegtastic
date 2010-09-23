@@ -21,7 +21,7 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_profiles, :dependent => :destroy
   
   accepts_nested_attributes_for :ingredients, :allow_destroy => true, 
-                                :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+                                :reject_if => :all_blank
   
   validate :needs_at_least_one_ingredient
   

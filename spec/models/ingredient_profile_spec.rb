@@ -15,8 +15,13 @@ describe IngredientProfile do
   
   it "should have the right value for nutrient amount in ingredient" do
     @ingredient = @recipe.ingredients.build({:name => @food.long_desc, :amount => 2, :unit => @weight.measure_desc})
+    Food.should_receive(:search).with(@ingredient.name).and_return([@food]) 
+    Weight.should_receive(:search).with(@ingredient.unit, :with => {:food_id => @food.id}).
+    and_return([@weight])
+    
     @recipe.save!
     
+    #Formula to figure out nutrient amount in ingredient based on entry in weights table and ingredient unit
     ingredient_weight = (@weight.gm_weight/@weight.amount)*@ingredient.amount
     x = (@n1.value/100) * (ingredient_weight)
 

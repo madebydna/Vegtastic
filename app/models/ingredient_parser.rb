@@ -1,6 +1,8 @@
 class IngredientParser 
   
-  REDUNDANT_WORDS = ["small", "large", "medium", "big", "tiny", "fresh", "dried", "raw", "organic"] # to be continued ...
+  REDUNDANT_WORDS = ["small", "large", "medium", "big", "fresh", "dried", "raw", "organic"] # to be continued ...
+  OTHER_COMMON_UNITS = ["tbsp", "tsp", "cup", "oz", "teaspoon", "tablespoon", "fruit"]
+  
   
   def initialize(ingredient)
     @ingredient = ingredient
@@ -8,7 +10,6 @@ class IngredientParser
   
   def set_flag
     if @ingredient.food = find_food
-      #raise @ingredient.food.inspect if @ingredient.name =~ /^Basil/
       @ingredient.weight = find_weight
       @ingredient.flag = @ingredient.weight ? "green" : "yellow"
     else
@@ -17,9 +18,25 @@ class IngredientParser
   end
   
   def find_weight
-    #TODO: measurements need to pass some equivalency check (e.g.: tsp is equivalent to teaspoon)
-    Weight.search(@ingredient.unit, :with => {:food_id => @ingredient.food.id}).first
+    weights = Weight.search(@ingredient.unit, :with => {:food_id => @ingredient.food.id})
+    if weights.length >= 1
+      weights.first
+    else
+      # before we give up and flag the ingredient as not found we try some other common measures
+      # measurements need to pass some equivalency check (e.g.: tsp is equivalent to teaspoon)
+      # for some vegetables the name of the household measure is the name of the vegetable itself
+      # for fruits the name "fruit" is often used in the measure description
+      units_to_try = (OTHER_COMMON_UNITS - [@ingredient.unit]).push @ingredient.name
+      weights = Weight.search(units_to_try.join(" | "), :with => {:food_id => @ingredient.food.id}, :match_mode => :boolean)
+      weights.first
+      # TODO: if other units were tried then we need to convert one unit to another
+    end
   end
+  
+  def recalculate_gm_weight
+    # TODO: if other units were tried then we need to convert one unit to another
+  end
+  
   
   def find_food
     #TS match mode is :all by default
@@ -41,7 +58,7 @@ class IngredientParser
   
   def reduce_result_set(foods, cleaned_phrase)
     # an ingredient like "margarine" or "bread" will return a large number of results
-    # favor those that contain the words "regular", "plain" or "raw", or start with the word
+    # favor those that contain the words "regular", "plain" or "raw", or start with the name of the ingredient
     reduced = Food.search("#{cleaned_phrase} plain | #{cleaned_phrase} regular | #{cleaned_phrase} raw", 
               :conditions => {:manufacturer => ""},
               :match_mode => :boolean)
