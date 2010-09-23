@@ -1,25 +1,10 @@
-%h1 Listing recipes
+%h2 Newest Recipes
 
-%table
-  %tr
-    %th Title
-    %th Servings
-    %th Description
-    %th Directions
-    %th
-    %th
-    %th
-
-  - @recipes.each do |recipe|
-    %tr
-      %td= recipe.title
-      %td= recipe.servings
-      %td= recipe.description
-      %td= recipe.directions
-      %td= link_to 'Show', recipe
-      %td= link_to 'Edit', edit_recipe_path(recipe)
-      %td= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete
-
-%br
+-@recipes.each do |recipe|
+  .recipeSpotlight
+    %h4 
+      =link_to(recipe.title, recipe)
+    %p
+      =recipe.description
 
 = link_to 'New recipe', new_recipe_path

@@ -42,7 +42,7 @@ describe Ingredient do
       @recipe = Factory.build(:recipe)
       @ingredient = @recipe.ingredients.build({:name => @food.long_desc, :amount => "1", :unit => "clove"})
       Food.should_receive(:search).with(@ingredient.name).and_return([@food])
-      @units_to_try = (IngredientParser::OTHER_COMMON_UNITS - [@ingredient.unit]).push @ingredient.name
+      @units_to_try = (IngredientParser::OTHER_COMMON_UNITS - [@ingredient.unit]).push "(#{@ingredient.name})"
       
       # tests that it tries two searches to find unit in weights table
       Weight.should_receive(:search).with(@ingredient.unit, :with => {:food_id => @food.id}).

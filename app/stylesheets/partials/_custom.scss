@@ -332,7 +332,7 @@ body.bp {
 		}
 		p.remove{
 			margin: 0;
-			padding-top: 30px;
+			padding-top: 27px;
 		}
 		
 		a.button {
@@ -353,6 +353,119 @@ body.bp {
 		a#add-another {
 			line-height: 1em;
 		}
+		
+	.recipeSpotlight {
+	  padding-top: 2.5em; 
+	  border-bottom: 1px solid #ccc;
+	}	
+	  h4 {
+	    margin-bottom: 0.5em
+	  }
+	
+	.recipeContainer {
+	  float: left;
+	  width: 600px;
+	  margin-right: 30px;
+	}
+	  p.servings {
+	    margin-bottom: 0.5em
+	  }
+	  
+	  h5.ingredients, p.directions {
+	    margin-bottom: 0.3em
+	  }
+	  
+	  ul.ingredients {
+	    margin-bottom: 1.5em
+	  }
+	    li {
+	      margin-bottom: 0.15em
+	    }
+	  
+	
+	.nutrientContainer {
+	  float: left;
+	  width: 260px;
+	}
+	  ul.ingredientInfo {
+	    list-style: none;
+	    margin: 5px 0;
+	  }
+	    li.yellow {
+	      padding-left: 18px;
+	      background: url("/images/icons/flag_yellow.png") no-repeat 0 0;
+	    }
+	    
+     li.green {
+	      padding-left: 18px;
+	      background: url("/images/icons/flag_green.png") no-repeat 0 0;
+	    }
+	    li.red {
+	      padding-left: 18px;
+	      background: url("/images/icons/flag_red.png") no-repeat 0 0;
+	    }
+	    
+	  table {
+	    border: 1px solid #000;
+	    padding: 4px;
+	    margin-bottom: 20px;
+	  }
+	    tr.info {
+	      border-bottom: 1px solid #000;
+	    }
+	    
+	    td.header {
+	      font-size: 120%;
+	      font-weight: bold;
+	    }
+	      
+	    td.nutrientName {
+	      font-weight: bold;
+	      padding: 0 0 6px 0;
+	    }
+	    td.nutrientAmount {
+	      font-size: 90%;
+	    }
+	    
+   /*Rails default error summary
+  --------------------------------------------- */
+ .field_with_errors {
+   display: inline;
+ }
+  .field_with_errors input, .field_with_errors select, .field_with_errors textarea {
+    border: 1px solid #B60040;
+  }
+ #errorExplanation {
+    padding: 0.5em; 
+    border: 1px solid #B60040; 
+    background: #FFDCE8; 
+    margin: 0 0 30px;
+  }
+   #errorExplanation h2 {
+   color: #B60040; 
+   margin: 5px 0; 
+   border: none; 
+   font-size: 1.4em; 
+   padding: 0;
+   }
+
+   #errorExplanation p {
+    color: #4B4742; 
+    margin-bottom: 5px;
+  }
+
+   #errorExplanation ul { 
+    list-style: disc; 
+    margin-left: 15px;
+    }
+     #errorExplanation li {
+      color: #B60040; 
+      padding: 5px 0; 
+      font-size: 1.2em;
+    }
+ 
+ 
+  
   /*self-clearing floats
  --------------------------------------------- */
  .group:after {

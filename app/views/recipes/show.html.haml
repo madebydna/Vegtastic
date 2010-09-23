@@ -1,39 +1,69 @@
-%h3
-  = @recipe.title
-%p
-  %b Servings:
-  = @recipe.servings
-%h5 Ingredients  
--@recipe.ingredients.each do |i|
-  %p
-    ="#{i.amount} #{i.unit} #{i.name}, #{i.instructions}"
+.recipeWrapper.group
+  .recipeContainer
+    %h3
+      = @recipe.title
+    %p{:style => "font-style: italic; font-family: Georgia;"}
+      = @recipe.description
+    %p.servings
+      %b Servings:
+      = @recipe.servings
+    %h5.ingredients Ingredients 
+    %ul.ingredients 
+      -@recipe.ingredients.each do |i|
+        %li
+          =i.display
+    %p.directions
+      %b Directions:
+      = simple_format(@recipe.directions)
 
-%p
-  %b Description:
-  = @recipe.description
-%p
-  %b Directions:
-  = @recipe.directions
-
-%hr
+  .nutrientContainer
+    %table{:cellspacing => '0', :cellpadding => '0', :width => '100%'}
+      %tr
+        %td.header{:align => 'center', :colspan => '2'}
+          Nutrition Facts
+      %tr
+        %td{:style => 'background: #000000; line-height: .6em;', :colspan => '2'}
+          &nbsp;
+      %tr
+        %td{:style => 'font-size: 7pt;', :colspan => '2'}
+          .line Amount Per Serving
+      -@recipe.recipe_profiles.each do |profile|
+        %tr.info
+          %td.nutrientName
+            =profile.nutrient_name
+          %td.nutrientAmount
+            ="#{profile.nutrient_value}#{profile.nutrient_unit}"
+        %tr
+          %td{:style => 'background: #000000; line-height: 1px;', :colspan => '2'}
+            &nbsp;   
+      %tr
+        %td{:style => 'font-size: 7pt;', :colspan => '2'}
+          .line Nutritional values are estimates.
+        
+    %strong Ingredients contained in the profile
+    %ul.ingredientInfo
+      -@recipe.ingredients.each do |i|
+        %li{:class => i.flag}
+          =i.name
+    =link_to 'Edit to adjust ingredient names or units', edit_recipe_path(@recipe)
+    %hr
+    %strong Legend
+    %ul.ingredientInfo
+      %li{:class => "green"}
+        Ingredient found and profiled
+      %li{:class => "yellow"}
+        Ingredient found, but could not size
+      %li{:class => "red"}
+        Ingredient not found         
   
-%h4 Nutritional Profile
-- @recipe.recipe_profiles.each do |profile|
-  %p
-    %strong 
-      =profile.nutrient_name
-    =": #{profile.nutrient_value}#{profile.nutrient_unit}"
 
-%hr
 
-%h4 Ingredients not included in the profile
 
-%ul
-  -@recipe.ingredients.not_included.each do |i|
-    %li
-      ="#{i.name} (#{i.flag})"
+
 
 
 = link_to 'Edit', edit_recipe_path(@recipe)
+\|
+= link_to 'Delete', recipe_path(@recipe), :confirm => 'Are you sure?', :method => :delete
 \|
 = link_to 'Back', recipes_path

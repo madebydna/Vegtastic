@@ -9,7 +9,7 @@ group :development do
     #compass watch seems to need rb-inotify for watch function
     #maybe can be moved to development group?
     #also add this to rails 3 template
-    gem "rb-inotify"
+    # gem "rb-inotify"
 end
 
 

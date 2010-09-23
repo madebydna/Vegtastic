@@ -18,7 +18,7 @@
   .float-left
     %p.remove
       -if f.object.new_record?
-        =link_to("remove", "javascript:void(0)", :class => "remove_nested_fields")
+        =link_to("remove", "javascript:void(0)", :class => "remove_nested_fields button")
       -else
         =link_to_remove_fields("remove", f)
 

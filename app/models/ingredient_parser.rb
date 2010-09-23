@@ -17,27 +17,6 @@ class IngredientParser
     end
   end
   
-  def find_weight
-    weights = Weight.search(@ingredient.unit, :with => {:food_id => @ingredient.food.id})
-    if weights.length >= 1
-      weights.first
-    else
-      # before we give up and flag the ingredient as not found we try some other common measures
-      # measurements need to pass some equivalency check (e.g.: tsp is equivalent to teaspoon)
-      # for some vegetables the name of the household measure is the name of the vegetable itself
-      # for fruits the name "fruit" is often used in the measure description
-      units_to_try = (OTHER_COMMON_UNITS - [@ingredient.unit]).push @ingredient.name
-      weights = Weight.search(units_to_try.join(" | "), :with => {:food_id => @ingredient.food.id}, :match_mode => :boolean)
-      weights.first
-      # TODO: if other units were tried then we need to convert one unit to another
-    end
-  end
-  
-  def recalculate_gm_weight
-    # TODO: if other units were tried then we need to convert one unit to another
-  end
-  
-  
   def find_food
     #TS match mode is :all by default
     all = Food.search(@ingredient.name)
@@ -77,5 +56,26 @@ class IngredientParser
     word_array.delete_if {|w| REDUNDANT_WORDS.include?(w) }
     word_array.map {|w| w.downcase }.join(" ")
   end
+  
+  def find_weight
+    weights = Weight.search(@ingredient.unit, :with => {:food_id => @ingredient.food.id})
+    if weights.length >= 1
+      weights.first
+    else
+      # before we give up and flag the ingredient as not found we try some other common measures
+      # measurements need to pass some equivalency check (e.g.: tsp is equivalent to teaspoon)
+      # for some vegetables the name of the household measure is the name of the vegetable itself
+      # for fruits the name "fruit" is often used in the measure description
+      units_to_try = (OTHER_COMMON_UNITS - [@ingredient.unit]).push "(#{@ingredient.name})"
+      weights = Weight.search(units_to_try.join(" | "), :with => {:food_id => @ingredient.food.id}, :match_mode => :boolean)
+      weights.first
+      # TODO: if other units were tried then we need to convert one unit to another
+    end
+  end
+  
+  def recalculate_gm_weight
+    # TODO: if other units were tried then we need to convert one unit to another
+  end
+  
   
 end

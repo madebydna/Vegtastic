@@ -1,31 +1,36 @@
-
-= form_for @recipe do |f|
+=form_for @recipe, :html => {:class => "bp"} do |f|
   -if @recipe.errors.any?
     #errorExplanation
-      %h2= "#{pluralize(@recipe.errors.count, "error")} prohibited this recipe from being saved:"
+      %h2 Whoops, looks like something went wrong.
+      %p Please review the form below and make the appropriate changes.
       %ul
         - @recipe.errors.full_messages.each do |msg|
           %li= msg
-  %fieldset.inputs
-    %ol
+  .form-row.group
+    .float-left
       = f.label :title
+      %br/
       = f.text_field :title
-    %ol
+    .float-left
       = f.label :servings
+      %br/
       = f.text_field :servings
-    %ol
-      = f.label :description
-      = f.text_area :description, :height => '100'
-    -@recipe.ingredients.build if @recipe.new_record?
-    %div{:style => "display:none;", :id => "extra"}
-      =link_to_add_fields(f, :ingredients) 
-    %h5 Ingredients
-    =f.fields_for :ingredients do |i_fields|
-      =render :partial => "ingredients/form", :locals => {:f => i_fields}
-    =link_to("Add Ingredient", new_recipe_path, :id => "add-another", :remote => true)
-    %hr
-    %ol
-      = f.label :directions
-      = f.text_area :directions
-    %ol
-      = f.submit 'Save'
+  .form-row
+    = f.label :description, "Short Description"
+    %br/
+    = f.text_area :description, :class => "mini"
+  -@recipe.ingredients.build if @recipe.new_record?
+  .hide#extra
+    =link_to_add_fields(f, :ingredients)
+  %h3 Ingredients
+  =f.fields_for :ingredients do |i_fields|
+    =render :partial => "ingredients/form", :locals => {:f => i_fields}
+  .form-row
+    =link_to("Add More Ingredients", new_recipe_path, :id => "add-another", :remote => true)
+  .form-row
+    = f.label :directions
+    %br/
+    = f.text_area :directions
+  .form-row
+    -label = @recipe.new_record? ? "Create Recipe" : "Update Recipe"
+    =f.submit label, :class => "submit"

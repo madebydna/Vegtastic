@@ -17,6 +17,8 @@ class Recipe < ActiveRecord::Base
   after_save :update_or_create_recipe_profile
   
   has_many :ingredients, :dependent => :destroy
+  validates_numericality_of :servings
+  validates_presence_of :servings, :directions
   validates_associated :ingredients
   has_many :recipe_profiles, :dependent => :destroy
   

@@ -27,7 +27,7 @@ class Ingredient < ActiveRecord::Base
   has_many :nutrients, :through => :ingredient_profiles
   
   validates_numericality_of :amount
-  validates_presence_of :amount, :name
+  validates_presence_of :amount, :name, :unit
   
   before_save :set_flag
   after_save :create_profiles, :if => Proc.new { |i| i.flag == 'green' }
@@ -36,6 +36,14 @@ class Ingredient < ActiveRecord::Base
   class << self
     def not_included
       where("flag != 'green'")
+    end
+  end
+  
+  def display
+    if !instructions.blank?
+      "#{amount} #{unit} #{name}, #{instructions}"
+    else
+      "#{amount} #{unit} #{name}"
     end
   end
   

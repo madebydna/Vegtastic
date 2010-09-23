@@ -62,17 +62,17 @@
           %h2.hide "Primary Navigation Menu"
           %ul
             %li  
-              =link_to "Recipes", "#"
+              =link_to "Recipes", recipes_path
+            %li
+              =link_to "Add A Recipe", new_recipe_path
             %li
               =link_to "Articles", "#"
             %li
               =link_to "Forums", "#"
             %li
-              =link_to "Recipes", "#"
+              =link_to "Videos", "#"
             %li
-              =link_to "Articles", "#"
-            %li
-              =link_to "Forums", "#"
+              =link_to "Cook of the Week", "#"
             %li.last
               =link_to "Help", "#"
       #contentWrapper
@@ -80,6 +80,6 @@
           =yield
       .mainCap.bottom
       .footer
-        footer goes here
+        &copy; Vegtastic, 2010. All rights reserved.
     = javascript_include_tag :defaults
 

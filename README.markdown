@@ -43,13 +43,6 @@ If ingredient gets green flag, entries will be made into the ingredient_profiles
 for the particular ingredient. After all ingredients have been processed this way, an entry will be made
 into the recipe_profiles table with aggregated values for each nutrient over all ingredients. This would conclude the nutritional analysis of the recipe.
 
-### Problems and Still TODO's
-
-- "Lookup" tables should be used in testing, too. Have to figure out how to set up testing environment to make that possible
-- Implement parsing/searching logic to map ingredient name (user input) to matches in the foods table. The same goes for mapping ingredient 
-  units (tsp, cup) to entries into the weights table. The problem is that there will hardly ever be a perfect match, so several steps need 
-  to find an adequate match.
-
 
 
 
