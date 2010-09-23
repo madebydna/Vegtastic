@@ -12,9 +12,13 @@
 
 
 The following steps are only necessary if you want to run the site on a local server:
+
 8. To install the data for the lookup tables run "rake import_usda_data" (beware: the rake task takes about 10-15       minutes because of the size of the data set). 
 9. Run "rake ts:index" to index the database with Thinking Sphinx
 10. "rails server" to start server on "http://localhost:3000/"
+
+I am preparing a deploy to a VPS. This will be ready in about an hour. I'll send you an email when it's live with 
+the url.
 
 ###About Vegtastic
 
@@ -42,5 +46,10 @@ Thinking Sphinx is used to help with the search, since it has full-text search a
 After a food corresponding to the ingredient is found, a similar algorithm is employed to find the right household measure for the ingredient, since that is necessary to be able to quantitatively profile the recipe. That algorithm is still under development. Basically the algorithm tries a few other common measures or units if the one provided by the user could not be found. This is incomplete still, since we would need to convert the unit indicated by the user and the unit found in the weights table. For now I was aiming to maximize the "hits", i.e. the ingredients fully profiled, so that the profile of the recipe is based on as many ingredients as possible.
 
 On the UI side, I tried to place the recipe entry and search in the context of a (mocked-up) website. Some Ajax has been applied to the nested form, so that users can add as many ingredients as is necessary by generating the sub-form for ingredients on the fly. 
+
+###Still To Do
+
+- improve algorithm for finding foods and weights
+- more complete test suite for edge cases
 
 
