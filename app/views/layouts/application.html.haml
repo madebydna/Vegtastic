@@ -50,7 +50,7 @@
               %li
                 =link_to "For Raw Foodists", "#"
               %li.last
-                =link_to "How To's", "#"
+                =link_to "Add a recipe", new_recipe_path
           #searchNav
             %form_tag
               %span
@@ -76,9 +76,10 @@
             %li.last
               =link_to "Help", "#"
       #contentWrapper
-        #contentContainer
+        #contentContainer.group
           =yield
       .mainCap.bottom
       .footer
         footer goes here
     = javascript_include_tag :defaults
+

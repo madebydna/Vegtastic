@@ -1,5 +1,12 @@
 require 'rubygems'
 require 'spork'
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'remarkable/active_model'
+require 'factory_girl'
+require 'database_cleaner'
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However, 
@@ -30,7 +37,20 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, comment the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    #config.use_transactional_fixtures = true
+    
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+    end
+  
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+  
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
 
     ### Part of a Spork hack. See http://bit.ly/arY19y
     # Emulate initializer set_clear_dependencies_hook in 
@@ -40,4 +60,6 @@ Spork.prefork do
 end
 
 Spork.each_run do
+ 
 end
+

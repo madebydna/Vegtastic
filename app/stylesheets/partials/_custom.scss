@@ -12,13 +12,15 @@ body.bp {
   
 	a:link, a:visited {
   text-decoration: none;
-  color: #222;
+  color: #3B73B9;
 
   }
 
   a:hover {
     //color: rgba(0,0,0,.9);
-		color: #000;
+		color: #39C;
+		text-decoration: underline;
+		
     }
 	
 	img.spriteMain, spritemain img {
@@ -280,6 +282,77 @@ body.bp {
 	 padding:0 9px;
 	 text-shadow:1px 1px #FFFFFF;
  }
+ 
+	form.bp input.submit{
+	 -moz-border-radius:5px 5px 5px 5px;
+		background:#E8E8E5;
+		border:2px solid #9CA1A5;
+		color:#333333;
+		font-size:12px;
+		font-weight:bold;
+		padding:3px 8px;
+		text-align:center;
+		cursor: pointer;	
+	}
+		form.bp input.submit:hover{
+		background: #DDD;
+
+	} 
+
+ 
+	.form-row{
+		margin-bottom: 1.5em
+	}
+	.float-left {
+		float: left
+	}
+	.float-right {
+		float: right;
+	}
+	form.bp textarea.mini {
+		width: 550px;
+		height: 50px;
+	}
+	form.bp .float-left{
+		margin-right: 30px;
+	}
+	form.bp .ingredient-row{
+		background: #eee;
+		border: 1px solid #ddd;
+		padding: 6px;
+		
+		input#amount{
+			width: 40px;
+		}
+		select{
+			padding: 4px 0;
+		}
+		input#name, input#instructions {
+			width: 250px;
+		}
+		p.remove{
+			margin: 0;
+			padding-top: 30px;
+		}
+		
+		a.button {
+			-moz-border-radius:3px 3px 3px 3px;
+			background:url("/images/temp/sprite_master.png") repeat-x 0 -1260px;
+			border:1px solid #999999;
+			color:#444444 !important;
+			cursor:pointer;
+			height:30px;
+			line-height:130%;
+			margin:0px;
+			padding:4px 9px;
+			text-decoration:none;
+			text-shadow:1px 1px #FFFFFF;
+		}
+		
+	}
+		a#add-another {
+			line-height: 1em;
+		}
   /*self-clearing floats
  --------------------------------------------- */
  .group:after {

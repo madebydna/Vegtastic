@@ -1,15 +1,38 @@
-%p
-  %b Title:
+%h3
   = @recipe.title
 %p
   %b Servings:
   = @recipe.servings
+%h5 Ingredients  
+-@recipe.ingredients.each do |i|
+  %p
+    ="#{i.amount} #{i.unit} #{i.name}, #{i.instructions}"
+
 %p
   %b Description:
   = @recipe.description
 %p
   %b Directions:
   = @recipe.directions
+
+%hr
+  
+%h4 Nutritional Profile
+- @recipe.recipe_profiles.each do |profile|
+  %p
+    %strong 
+      =profile.nutrient_name
+    =": #{profile.nutrient_value}#{profile.nutrient_unit}"
+
+%hr
+
+%h4 Ingredients not included in the profile
+
+%ul
+  -@recipe.ingredients.not_included.each do |i|
+    %li
+      ="#{i.name} (#{i.flag})"
+
 
 = link_to 'Edit', edit_recipe_path(@recipe)
 \|

@@ -13,8 +13,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.xml
   def show
-    @recipe = Recipe.find(params[:id])
-
+    @recipe = Recipe.find(params[:id], :include => :ingredients)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @recipe }
@@ -28,7 +27,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @recipe }
+      format.js
     end
   end
 

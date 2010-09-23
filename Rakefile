@@ -3,5 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'thinking_sphinx/tasks'
+
 
 Vegtastic::Application.load_tasks
