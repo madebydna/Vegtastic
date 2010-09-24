@@ -6,6 +6,7 @@ gem 'mysql2'
 
 group :development do
     gem "annotate-models"
+    gem "capistrano"
 end
 
 
