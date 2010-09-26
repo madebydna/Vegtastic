@@ -1,3 +1,7 @@
+path = "public/javascripts/nested_form.js"
+puts "Generating #{path}"
+File.open("#{Rails.root}/#{path}", "w") do |file|
+  file.print <<-EOS
 $(function() {
   $('form a.add_nested_fields').live('click', function() {
     // Setup
@@ -6,7 +10,7 @@ $(function() {
     
     // Make the context correct by replacing new_<parents> with the generated ID
     // of each of the parent objects
-    var context = ($(this).siblings('.fields').children('input:first').attr('name') || '').replace(new RegExp('[[a-z]+]$'), '');
+    var context = ($(this).siblings('.fields').children('input:first').attr('name') || '').replace(new RegExp('\[[a-z]+\]$'), '');
     
     // context will be something like this for a brand new form:
     // project[tasks_attributes][1255929127459][assignments_attributes][1255929128105]
@@ -19,7 +23,7 @@ $(function() {
       for(i = 0; i < parent_names.length; i++) {
         if(parent_ids[i]) {
           content = content.replace(
-            new RegExp('(\[' + parent_names[i] + '\])\[.+?\]', 'g'),
+            new RegExp('(\\[' + parent_names[i] + '\\])\\[.+?\\]', 'g'),
             '$1[' + parent_ids[i] + ']'
           )
         }
@@ -44,3 +48,5 @@ $(function() {
     return false;
   });
 });
+EOS
+end

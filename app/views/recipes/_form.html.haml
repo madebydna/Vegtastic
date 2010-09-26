@@ -1,4 +1,4 @@
-=form_for @recipe, :html => {:class => "bp"} do |f|
+=nested_form_for @recipe, :html => {:class => "bp"} do |f|
   -if @recipe.errors.any?
     #errorExplanation
       %h2 Whoops, looks like something went wrong.
@@ -20,13 +20,11 @@
     %br/
     = f.text_area :description, :class => "mini"
   -@recipe.ingredients.build if @recipe.new_record?
-  .hide#extra
-    =link_to_add_fields(f, :ingredients)
   %h3 Ingredients
   =f.fields_for :ingredients do |i_fields|
     =render :partial => "ingredients/form", :locals => {:f => i_fields}
   .form-row
-    =link_to("Add More Ingredients", new_recipe_path, :id => "add-another", :remote => true)
+    =f.link_to_add("Add More Ingredients", :ingredients)
   .form-row
     = f.label :directions
     %br/

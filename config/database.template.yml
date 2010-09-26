@@ -22,18 +22,18 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: vegtastic_development
+  database: vegtastic_test
   pool: 5
   username: root
   password:
-  socket: ....
+  socket: ...
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: vegtastic_development
+  database: vegtastic_production
   pool: 5
   username: root
   password:
-  socket: ....
+  socket: ...
