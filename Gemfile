@@ -28,8 +28,10 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "haml"
 gem "compass"
+gem "devise"
 
 gem 'thinking-sphinx', :git => 'git://github.com/freelancing-god/thinking-sphinx.git', :branch  => 'rails3', 
                        :require => 'thinking_sphinx'
+gem "nested_form", :git => "git://github.com/madebydna/nested_form.git"
 
 

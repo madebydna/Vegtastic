@@ -1,5 +1,7 @@
 Vegtastic::Application.routes.draw do
   
+  devise_for :users
+
   get "pages/home"
 
   get "pages/about"
@@ -11,8 +13,6 @@ Vegtastic::Application.routes.draw do
   resources :recipes do
     resources :ingredients
   end
-  
-  root :to => 'pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
